@@ -1,0 +1,18 @@
+%dw 2.0
+
+type auto_7e799371_0db9_4ba0_b4da_aa8adf65db15_Input_Payload = {
+  pincode: Number, 
+  hotel_city: String, 
+  hotel_booking_id: Number, 
+  booking_start_date: String, 
+  phone: Number, 
+  booking_end_date: String, 
+  hotel_id: Number, 
+  last_name: String, 
+  id_type: String, 
+  ID: Number, 
+  first_name: String, 
+  hotel_name: String, 
+  _?: Any
+}
+

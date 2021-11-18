@@ -1,0 +1,12 @@
+%dw 2.0
+
+type auto_b1c597b4_07cc_414a_a3b8_f88f00cd74cb_Input_Payload = {
+  pincode: Number, 
+  phone: Number, 
+  last_name: String, 
+  id_type: String, 
+  ID: Number, 
+  first_name: String, 
+  _?: Any
+}
+

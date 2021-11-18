@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="implementation-test-suite.xml" />
+	<global-property doc:name="Global Property" doc:id="eee16442-6324-4e7f-a8d0-3b2a688fed68" name="encryption.key" value="mulesofttraining" />
+	<munit:test name="implementation-test-suite-getCustomersByIdTest" doc:id="ce83479c-4e70-459d-b7c0-ee8af20440de" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to getCustomersById" doc:id="c1072623-83ca-4fce-936b-79355a6fa4ad" name="getCustomersById"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="502c73e0-64cc-4748-8a38-61f4f09b2dce" is='#[MunitTools::withMediaType("application/json")]' expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="implementation-test-suite-getCustomersTest" doc:id="24b018d9-2d29-40e0-a466-6ef8c0d1443f" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to getCustomers" doc:id="cea934f6-4e02-4dcc-a7bf-7bd462d25212" name="getCustomers"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="ba356873-b6b2-4db9-b163-2f69a1a81c49" expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="implementation-test-suite-getHotelBookingsTest" doc:id="cc545409-577d-499e-9004-48bf0b129f35" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to getHotelBookings" doc:id="d6d77368-893b-46c9-a520-2c84e133d487" name="getHotelBookings"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="af196a5a-9105-4e71-bd30-5c1dfe47d8f2" expression="#[payload]" is="#[MunitTools::notNullValue()]" message="Is not empty"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="implementation-test-suite-getBookingsByIdTest" doc:id="b8551c81-4381-4a01-aeb0-c1c22b4f5d11" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to getBookingsById" doc:id="4c935662-9b9c-4132-985f-8ecce588264d" name="getBookingsById"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="4b0c1d09-ad59-44e8-9b66-69920a848b8c" expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>

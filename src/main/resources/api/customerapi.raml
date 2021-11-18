@@ -1,0 +1,154 @@
+#%RAML 1.0
+title: CustomerAPI
+types: 
+  Customer: !include datatypes/CustomerDatatype.raml
+  HotelBooking: !include datatypes/HotelBookingDataType.raml
+
+traits:
+  unauthorized:
+    responses:
+      401:
+        body:
+          application/json:
+            example:
+              message: Not authorized. Try with correct credentials.
+  server_side_error:
+    responses:
+      500:
+        body:
+          application/json:
+            example:
+              message: Something went wrong. Try later.
+
+/customers:
+  is:
+    - unauthorized
+    - server_side_error
+  get:        
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/CustomersExample.raml
+            type: Customer[]
+
+  post:
+    description: Adding the new customer
+    displayName: Add a new customer
+    body:
+      application/json:
+        example: !include examples/CustomerExample.raml
+        type: Customer
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              message: customer has been added
+  
+  /{customerId}:
+    is:
+      - unauthorized
+      - server_side_error
+    get:
+      description: Getting the customer by id
+      displayName: Get customer by id
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/CustomerExample.raml
+              type: Customer
+                
+        
+    put:
+      description: Updating customer by id
+      displayName: Update customer by id
+      body:
+        application/json:
+          example: !include examples/CustomerExample.raml
+          type: Customer
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                message: customer has been updated
+            
+    delete:
+      description: Deleting customer by id
+      displayName: Delete customer by id
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                message: customer has been deleted.
+
+    /hotelBookings:
+      is:
+        - unauthorized
+        - server_side_error
+      get:
+        description: Get all Bookings
+        displayName: Get Bookings
+        responses:
+          200:
+            body:
+              application/json:
+                example: !include examples/HotelsBookingExample.raml
+                type: HotelBooking[]    
+      post:
+        description: Adding a new booking
+        displayName: Add a new booking
+        body:
+          application/json:
+            example: !include examples/HotelBookingExample.raml
+            type: HotelBooking
+        responses:
+          201:
+            body:
+              application/json:
+                example:
+                  message: Hotel has been added
+    
+      /{hotelBookingsId}:
+        is:
+          - unauthorized
+          - server_side_error
+        get:
+          description: Get Bookings by id
+          displayName: Get Bookings by id
+          responses:
+            200:
+              body:
+                application/json:
+                  example: !include examples/HotelBookingExample.raml
+                  type: HotelBooking
+                    
+            
+        put:
+          description: Update Bookings by id
+          displayName: Update Bookings by id
+          body:
+            application/json:
+              example: !include examples/HotelBookingExample.raml
+              type: HotelBooking
+          responses:
+            200:
+              body:
+                application/json:
+                  example:
+                    message: Bookings has been updated
+                
+        delete:
+          description: Delete Bookings by id
+          displayName: Delete Bookings by id
+          responses:
+            200:
+              body:
+                application/json:
+                  example:
+                    message: Bookings has been deleted
+                
+      
